@@ -59,16 +59,16 @@ class Quote
      */
     private static function parseToShoutedFormat(string $quote): string
     {
-        $quote = strtoupper($quote);
+        $quote = mb_strtoupper($quote);
 
-        $lastQuotesCharacter = substr($quote, strlen($quote)-1);
+        $lastQuotesCharacter = mb_substr($quote, strlen($quote)-1);
 
         if (in_array($lastQuotesCharacter, self::QUOTATION_MARKS, true)) {
-            return $quote[strlen($quote) - 2] === '!' ? $quote : sprintf('%s!', $quote);
+            return $quote[mb_strlen($quote) - 2] === '!' ? $quote : sprintf('%s!', $quote);
         }
 
         if (!ctype_alnum($lastQuotesCharacter)) {
-            $quote = substr($quote, 0, -1);
+            $quote = mb_substr($quote, 0, -1);
         }
 
         return sprintf('%s!', $quote);

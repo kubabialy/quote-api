@@ -7,9 +7,11 @@ namespace App\Domain\Quote;
 interface QuoteRepository
 {
     /**
+     * This method returns converted quotes for given author
+     *
+     * @param string $author
      * @param int $numberOfQuotes
      * @return Quote[]
-     * @throws QuotesLimitExceededException
      */
-    public function findQuoteByAuthor(int $numberOfQuotes): array;
+    public function findQuotesByAuthor(string $author, int $numberOfQuotes): array;
 }
