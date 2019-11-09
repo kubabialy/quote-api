@@ -26,6 +26,16 @@ class QuoteTest extends TestCase
                 'author' => 'Random Dude',
                 'quote' => 'This sentence is missing any punctuation',
                 'expectation' => 'THIS SENTENCE IS MISSING ANY PUNCTUATION!'
+            ],
+            [
+                'author' => 'Nobody',
+                'quote' => 'And then I tought "scientific approach, lets see what is gonna happen!"',
+                'expectation' => 'AND THEN I TOUGHT "SCIENTIFIC APPROACH, LETS SEE WHAT IS GONNA HAPPEN!"'
+            ],
+            [
+                'author' => 'Somebody',
+                'quote' => 'I have heard someone saying "this aint gonna work"',
+                'expectation' => 'I HAVE HEARD SOMEONE SAYING "THIS AINT GONNA WORK"!'
             ]
         ];
     }
@@ -40,6 +50,7 @@ class QuoteTest extends TestCase
     {
         $quote = new Quote($author, $quote);
 
-        $this->assertEquals($expectation, $quote->getShoutedQuote());
+        $this->assertEquals($author, $quote->getAuthor());
+        $this->assertEquals($expectation, $quote->getQuote());
     }
 }
