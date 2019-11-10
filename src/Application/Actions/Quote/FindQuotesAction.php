@@ -6,7 +6,6 @@ namespace App\Application\Actions\Quote;
 
 use App\Domain\Quote\Exceptions\QuotesLimitBelowZeroException;
 use App\Domain\Quote\Exceptions\QuotesLimitExceededException;
-use Coduo\PHPHumanizer\StringHumanizer;
 use Psr\Http\Message\ResponseInterface as Response;
 
 
