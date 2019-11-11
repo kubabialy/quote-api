@@ -14,6 +14,12 @@ return function (ContainerBuilder $containerBuilder) {
                 'path' => isset($_ENV['docker']) ? 'php://stdout' : __DIR__ . '/../logs/app.log',
                 'level' => Logger::DEBUG,
             ],
+            'cache' => [
+                'redis' => [
+                    'host' => $_ENV['REDIS_HOST'] ?? 'localhost',
+                    'port' => $_ENV['REDIS_POST'] ?? 6379,
+                ],
+            ],
         ],
     ]);
 };

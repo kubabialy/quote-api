@@ -10,6 +10,16 @@ use Psr\Log\LoggerInterface;
 
 return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
+        Redis::class => function (ContainerInterface $c) {
+            $settings = $c->get('settings');
+
+            $redisSettings = $settings['cache']['redis'];
+
+            $redis = new Redis();
+            $redis->connect($redisSettings['host'], $redisSettings['port']);
+
+            return $redis;
+        },
         LoggerInterface::class => function (ContainerInterface $c) {
             $settings = $c->get('settings');
 
