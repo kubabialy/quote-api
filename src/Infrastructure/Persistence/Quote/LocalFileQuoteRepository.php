@@ -12,12 +12,13 @@ class LocalFileQuoteRepository implements QuoteRepository
     /**
      * @param string $author
      * @param int $numberOfQuotes
+     * @param string|null $path
      * @return array
      */
-    public function findQuotesByAuthor(string $author, int $numberOfQuotes): array
+    public function findQuotesByAuthor(string $author, int $numberOfQuotes, string $path = __DIR__.'/quotes.json'): array
     {
-        $localFile = fopen(__DIR__ . '/quotes.json', 'rb') or die('Could not open file');
-        $fileContent = fread($localFile, filesize(__DIR__ . '/quotes.json'));
+        $localFile = fopen($path, 'rb') or die('Could not open file');
+        $fileContent = fread($localFile, filesize($path));
         fclose($localFile);
 
         $collection = json_decode($fileContent, false);
